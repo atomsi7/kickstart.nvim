@@ -18,7 +18,7 @@ return {
       }
     end,
     keys = {
-      { '<leader>o', '<Cmd>Oil<CR>', desc = 'Open parent directory(Oil)' },
+      { '<leader>o', '<Cmd>Oil<CR>', desc = '[O]il(parent directory)' },
     },
   },
   {
@@ -31,7 +31,7 @@ return {
       require('telescope').load_extension 'projects'
     end,
     keys = {
-      { '<leader>sp', '<Cmd>Telescope projects<CR>', desc = 'Projects' },
+      { '<leader>sp', '<Cmd>Telescope projects<CR>', desc = '[S]earch [P]rojects' },
     },
   },
   {
