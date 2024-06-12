@@ -77,8 +77,12 @@ return {
   },
   {
     'zbirenbaum/copilot.lua',
+    event = 'InsertEnter',
     cmd = 'Copilot',
     build = ':Copilot auth',
+    dependencies = {
+      { 'zbirenbaum/copilot-cmp' },
+    },
     opts = {
       suggestion = { enabled = false },
       panel = { enabled = false },
@@ -90,6 +94,7 @@ return {
   },
   {
     'zbirenbaum/copilot-cmp',
+    lazy = true,
     config = function()
       require('copilot_cmp').setup()
     end,
