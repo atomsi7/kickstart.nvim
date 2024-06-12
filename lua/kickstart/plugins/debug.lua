@@ -9,6 +9,9 @@
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
+  cmd = {
+    'DapLoadLaunchJSON',
+  },
   event = { 'BufReadPost', 'BufWritePost', 'BufNewFile' },
   -- NOTE: And you can specify dependencies as well
   dependencies = {

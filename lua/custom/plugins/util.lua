@@ -23,10 +23,11 @@ return {
   },
   {
     'ahmedkhalf/project.nvim',
-    opts = {},
     event = 'VeryLazy',
-    config = function(_, opts)
-      require('project_nvim').setup(opts)
+    config = function()
+      require('project_nvim').setup {
+        manual_mode = true,
+      }
       -- Directly load the telescope extension without LazyVim
       require('telescope').load_extension 'projects'
     end,
