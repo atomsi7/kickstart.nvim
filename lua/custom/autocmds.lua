@@ -7,7 +7,7 @@ local function set_proxy()
   vim.env.http_proxy = default_proxy
   vim.env.https_proxy = default_proxy
   vim.env.all_proxy = default_proxy
-  vim.notify('Proxy has been set to: ' .. mask_password(default_proxy), vim.log.levels.INFO)
+  vim.notify('Proxy has been set to: ' .. mask_password(default_proxy), 'info')
 end
 
 -- Function to unset proxy
@@ -15,7 +15,7 @@ local function unset_proxy()
   vim.env.http_proxy = nil
   vim.env.https_proxy = nil
   vim.env.all_proxy = nil
-  vim.notify('Proxy has been unset.', vim.log.levels.INFO)
+  vim.notify('Proxy has been unset.', 'info')
 end
 
 set_proxy()
