@@ -44,7 +44,7 @@ return {
           end,
           desc = 'Open with System Application',
         },
-        ['P'] = { 'toggle_preview', config = { use_float = false } },
+        ['P'] = { 'toggle_preview', config = { use_float = true } },
       },
     },
   },
