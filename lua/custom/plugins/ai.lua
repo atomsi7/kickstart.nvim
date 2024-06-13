@@ -7,6 +7,8 @@ return {
       local user = vim.env.USER or 'User'
       user = user:sub(1, 1):upper() .. user:sub(2)
       return {
+        proxy = vim.g.default_proxy,
+        allow_insecure = true,
         model = 'gpt-4',
         auto_insert_mode = true,
         show_help = true,
@@ -91,6 +93,11 @@ return {
         help = true,
       },
     },
+    config = function()
+      vim.g.copilot_proxy = vim.g.default_proxy
+      vim.g.copilot_proxy_strict_ssl = false
+      require('copilot').setup {}
+    end,
   },
   {
     'zbirenbaum/copilot-cmp',
