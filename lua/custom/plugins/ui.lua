@@ -318,7 +318,7 @@ return {
       },
     },
     keys = {
-      { '<leader>sn', '', desc = '[N]oice' },
+      { '<leader>s<S-n>', '', desc = '[N]oice' },
       {
         '<S-Enter>',
         function()
@@ -328,35 +328,35 @@ return {
         desc = 'Redirect Cmdline',
       },
       {
-        '<leader>snl',
+        '<leader>s<S-n>l',
         function()
           require('noice').cmd 'last'
         end,
         desc = 'Noice Last Message',
       },
       {
-        '<leader>snh',
+        '<leader>s<S-n>h',
         function()
           require('noice').cmd 'history'
         end,
         desc = 'Noice History',
       },
       {
-        '<leader>sna',
+        '<leader>s<S-n>a',
         function()
           require('noice').cmd 'all'
         end,
         desc = 'Noice All',
       },
       {
-        '<leader>snd',
+        '<leader>s<S-n>d',
         function()
           require('noice').cmd 'dismiss'
         end,
         desc = 'Dismiss All',
       },
       {
-        '<leader>snt',
+        '<leader>s<S-n>t',
         function()
           require('noice').cmd 'pick'
         end,
@@ -432,6 +432,11 @@ return {
           require('notify').dismiss { silent = true, pending = true }
         end,
         desc = 'Dismiss All Notifications',
+      },
+      {
+        '<leader>sn',
+        '<cmd>Telescope notify<cr>',
+        desc = '[Notify] Telescope',
       },
     },
     opts = {
