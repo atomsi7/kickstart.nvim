@@ -436,7 +436,7 @@ return {
       {
         '<leader>sn',
         '<cmd>Telescope notify<cr>',
-        desc = '[Notify] Telescope',
+        desc = '[N]otify Telescope',
       },
     },
     opts = {

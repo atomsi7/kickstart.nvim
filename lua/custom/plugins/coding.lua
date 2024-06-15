@@ -40,9 +40,7 @@ return {
     config = function()
       require('venv-selector').setup {
         settings = {
-          options = {
-            on_venv_activate_callback = nil,
-          },
+          options = {},
           search = {
             anaconda_envs = {
               command = '$FD python.exe$ $CONDA_PREFIX/envs --max-depth 2 --type f --full-path --color never -E /proc -I -a -L',
