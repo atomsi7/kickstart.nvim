@@ -2,7 +2,7 @@ return {
   {
     'folke/flash.nvim',
     -- enabled = false,
-    event = 'InsertEnter',
+    event = 'VeryLazy',
     vscode = true,
     opts = {},
     keys = {
