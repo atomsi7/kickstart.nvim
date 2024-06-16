@@ -45,11 +45,11 @@ return {
       { '<S-F5>', dap.terminate, desc = 'Debug: Terminate' },
       { '<leader>db', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
       {
-        '<leader>dB',
+        '<S-F9>',
         function()
           dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
         end,
-        desc = 'Debug: Set Breakpoint',
+        desc = 'Debug:Set Condition Breakpoint',
       },
       {
         '<leader>du',
@@ -58,7 +58,7 @@ return {
         end,
         desc = 'Dap UI',
       },
-      { mode = { 'n', 'v' }, '<F4>', dapui.eval, desc = 'Eval' },
+      { mode = { 'n', 'v' }, '<F3>', dapui.eval, desc = 'Eval' },
       { '<F7>', dapui.toggle, desc = 'Debug: See last session result.' },
       unpack(keys),
     }
@@ -93,18 +93,52 @@ return {
       -- Set icons to characters that are more likely to work in every terminal.
       --    Feel free to remove or use ones that you like more! :)
       --    Don't feel like these are good choices.
-      icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
         icons = {
-          pause = '  ',
-          play = ' ▶ ',
-          step_into = '  ',
-          step_over = '  ',
-          step_out = '  ',
-          step_back = ' 󰓕 ',
-          run_last = '  ',
-          terminate = '  ',
           disconnect = '  ',
+          pause = '  ',
+          play = '  ',
+          run_last = '  ',
+          step_back = '  ',
+          step_into = '  ',
+          step_out = '  ',
+          step_over = '  ',
+          terminate = '  ',
+        },
+      },
+      layouts = {
+        {
+          elements = { {
+            id = 'repl',
+            size = 0.35,
+          }, {
+            id = 'console',
+            size = 0.65,
+          } },
+          position = 'bottom',
+          size = 15,
+        },
+        {
+          elements = {
+            {
+              id = 'scopes',
+              size = 0.8,
+            },
+            {
+              id = 'stacks',
+              size = 0.3,
+            },
+            {
+              id = 'watches',
+              size = 0.05,
+            },
+            {
+              id = 'breakpoints',
+              size = 0.1,
+            },
+          },
+          position = 'left',
+          size = 35,
         },
       },
     }

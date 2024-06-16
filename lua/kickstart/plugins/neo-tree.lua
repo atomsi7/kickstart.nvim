@@ -17,6 +17,8 @@ return {
       hijack_netrw_behavior = 'open_current',
     },
     window = {
+      width = 20,
+      auto_expand_width = true,
       mappings = {
         ['<space>'] = 'none',
         ['Y'] = {

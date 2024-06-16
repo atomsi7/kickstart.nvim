@@ -9,12 +9,12 @@ return {
         diagnostics = 'nvim_lsp',
         always_show_bufferline = true,
         diagnostics_indicator = function(_, _, diagnostics_dict)
-          local s = ' '
-          for e, n in pairs(diagnostics_dict) do
-            local sym = e == 'error' and ' ' or (e == 'warning' and ' ') or ' '
-            s = s .. n .. sym
+          if diagnostics_dict.error then
+            local sym = ''
+            return diagnostics_dict.error .. sym
+          else
+            return ''
           end
-          return s
         end,
         offsets = {
           {
