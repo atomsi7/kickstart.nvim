@@ -1,6 +1,4 @@
 local map = vim.keymap.set
-local nmap = vim.api.nvim_set_keymap
-local wk = require 'which-key'
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 map('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
