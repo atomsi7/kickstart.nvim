@@ -192,9 +192,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
-require 'custom.options'
-require 'custom.keymaps'
-require 'custom.autocmds'
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
 --  See `:help vim.highlight.on_yank()`
@@ -956,4 +953,8 @@ require('lazy').setup({
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 -- call cmd SetProxy
+
+require 'custom.options'
+require 'custom.keymaps'
+require 'custom.autocmds'
 vim.cmd 'SetProxy'
