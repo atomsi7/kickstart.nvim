@@ -957,4 +957,5 @@ require('lazy').setup({
 require 'custom.options'
 require 'custom.keymaps'
 require 'custom.autocmds'
+
 vim.cmd 'SetProxy'

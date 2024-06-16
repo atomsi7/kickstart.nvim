@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+local wk = require 'which-key'
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 map('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
@@ -13,16 +14,15 @@ map('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease Window Wi
 map('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase Window Width' })
 
 -- Disable Ctrl-C in Normal and Visual Modes
-nmap('n', '<C-c>', '"+y', { noremap = true, silent = true })
-nmap('v', '<C-c>', '"+y', { noremap = true, silent = true })
+map({ 'v', 'n' }, '<C-c>', '"+y')
 
 -- Disable Ctrl-V in Insert, Normal, and Visual Modes
-nmap('i', '<C-v>', '<Esc>"+pa', { noremap = true, silent = true })
-nmap('v', '<C-v>', '"+p', { noremap = true, silent = true })
-nmap('n', '<C-v>', '"+p', { noremap = true, silent = true })
+map('i', '<C-v>', '<Esc>"+pa')
+map({ 'n', 'v' }, '<C-v>', '"+p')
 
-nmap('n', 'gA', 'ggVG', { noremap = true, silent = true, desc = 'Select All' })
-nmap('n', '<C-z>', 'u', { noremap = true, silent = true })
+map('n', 'gA', 'ggVG', { desc = 'Select All' })
+map('n', '<C-z>', 'u')
+map('n', '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All' })
 wk.register {
   ['<C-i>'] = 'jump Next',
   ['<C-o>'] = 'jump Previous',

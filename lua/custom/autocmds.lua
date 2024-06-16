@@ -18,8 +18,6 @@ local function unset_proxy()
   vim.notify('Proxy has been unset.', 'info')
 end
 
-set_proxy()
-
 -- Create commands to set and unset proxy
 vim.api.nvim_create_user_command('SetProxy', set_proxy, {})
 vim.api.nvim_create_user_command('UnsetProxy', unset_proxy, {})
