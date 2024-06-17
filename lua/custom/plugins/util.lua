@@ -18,7 +18,7 @@ return {
       }
     end,
     keys = {
-      { '<leader>o', '<Cmd>Oil<CR>', desc = '[O]il(parent directory)' },
+      { '<leader>od', '<Cmd>Oil<CR>', desc = 'oil parent [D]irectory' },
     },
   },
   {
@@ -43,8 +43,40 @@ return {
       'OverseerRun',
       'OverseerToggle',
     },
+    keys = {
+      { '<leader>to', '<Cmd>OverseerToggle<CR>', desc = '[T]oggle [O]verseer' },
+      { '<leader>or', '<Cmd>OverseerRun<CR>', desc = 'Overseer [R]un' },
+    },
     config = function()
-      require('overseer').setup()
+      require('overseer').setup {
+        task_list = {
+          max_height = { 30, 0.25 },
+          heigth = 12,
+          bindings = {
+            ['?'] = 'ShowHelp',
+            ['g?'] = 'ShowHelp',
+            ['<CR>'] = 'RunAction',
+            ['<C-e>'] = 'Edit',
+            ['o'] = 'Open',
+            ['<C-v>'] = 'OpenVsplit',
+            ['<C-s>'] = 'OpenSplit',
+            ['<C-f>'] = 'OpenFloat',
+            ['<C-q>'] = 'OpenQuickFix',
+            ['p'] = 'TogglePreview',
+            ['K'] = 'IncreaseDetail',
+            ['J'] = 'DecreaseDetail',
+            ['L'] = 'IncreaseAllDetail',
+            ['H'] = 'DecreaseAllDetail',
+            ['['] = 'DecreaseWidth',
+            [']'] = 'IncreaseWidth',
+            ['{'] = 'PrevTask',
+            ['}'] = 'NextTask',
+            ['<C-u>'] = 'ScrollOutputUp',
+            ['<C-d>'] = 'ScrollOutputDown',
+            ['q'] = 'Close',
+          },
+        },
+      }
     end,
   },
 }

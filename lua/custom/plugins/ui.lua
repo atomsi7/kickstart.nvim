@@ -198,6 +198,7 @@ return {
         end
       end
 
+      overseer = require 'overseer'
       require('lualine').setup {
         options = {
           icons_enabled = true,
@@ -206,7 +207,7 @@ return {
           -- section_separators = { left = "", right = "" },
           section_separators = '',
           component_separators = '',
-          disabled_filetypes = { 'dapui_watches', 'dapui_breakpoints', 'dapui_scopes', 'dapui_console', 'dapui_stacks', 'dap-repl' },
+          disabled_filetypes = { 'dapui_watches', 'dapui_breakpoints', 'dapui_scopes', 'dapui_console', 'dapui_stacks', 'dap-repl', 'OverseerList' },
           always_divide_middle = true,
         },
         sections = {
@@ -239,6 +240,22 @@ return {
             },
           },
           lualine_x = {
+            {
+              'overseer',
+              label = '', -- Prefix for task counts
+              colored = true, -- Color the task icons and counts
+              symbols = {
+                [overseer.STATUS.FAILURE] = ' ',
+                [overseer.STATUS.CANCELED] = ' ',
+                [overseer.STATUS.SUCCESS] = ' ',
+                [overseer.STATUS.RUNNING] = ' ',
+              },
+              unique = false, -- Unique-ify non-running task count by name
+              name = nil, -- List of task names to search for
+              name_not = false, -- When true, invert the name search
+              status = nil, -- List of task statuses to display
+              status_not = false, -- When true, invert the status search
+            },
             'encoding',
             {
               'fileformat',
@@ -353,7 +370,7 @@ return {
         function()
           require('noice').cmd 'dismiss'
         end,
-        desc = 'Dismiss All',
+        desc = '[D]ismiss All',
       },
       {
         '<leader>s<S-n>t',
@@ -431,7 +448,7 @@ return {
         function()
           require('notify').dismiss { silent = true, pending = true }
         end,
-        desc = 'Dismiss All Notifications',
+        desc = 'Dismiss All [N]otifications',
       },
       {
         '<leader>sn',
