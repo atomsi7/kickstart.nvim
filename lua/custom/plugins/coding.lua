@@ -24,7 +24,7 @@ return {
       }
     end,
     keys = {
-      { '<M-i>', '<cmd>ToggleTerm<CR>', { desc = 'ToggleTerm' } },
+      { '<M-i>', '<cmd>ToggleTerm<CR>', desc = 'ToggleTerm float' },
     },
   },
   {

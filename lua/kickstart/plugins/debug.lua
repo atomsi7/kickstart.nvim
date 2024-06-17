@@ -138,7 +138,7 @@ return {
             },
           },
           position = 'left',
-          size = 35,
+          size = 45,
         },
       },
     }

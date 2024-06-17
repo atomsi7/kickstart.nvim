@@ -20,9 +20,9 @@ map({ 'v', 'n' }, '<C-c>', '"+y')
 map('i', '<C-v>', '<Esc>"+pa')
 map({ 'n', 'v' }, '<C-v>', '"+p')
 
-map({ 'n', 'i', 'v' }, 'gA', 'ggVG', { desc = 'Select All' })
+map({ 'n', 'v' }, 'gA', 'ggVG', { desc = 'Select All' })
 map({ 'n', 'i', 'v' }, '<C-z>', 'u')
-map({ 'i', 'n', 'v' }, '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All' })
+map({ 'n', 'v' }, '<leader>qq', '<cmd>qa<cr>', { desc = 'Quit All' })
 wk.register {
   ['<C-i>'] = 'jump Next',
   ['<C-o>'] = 'jump Previous',
