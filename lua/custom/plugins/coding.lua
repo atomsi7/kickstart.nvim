@@ -98,6 +98,71 @@ return {
         '<cmd>Trouble qflist toggle<cr>',
         desc = 'Quickfix List (Trouble)',
       },
+      {
+        'gR',
+        function()
+          require('trouble').open 'lsp_references'
+        end,
+        desc = 'LSP References (Trouble)',
+      },
+      {
+        '[q',
+        function()
+          if require('trouble').is_open() then
+            require('trouble').previous { skip_groups = true, jump = true }
+          else
+            vim.cmd.cprev()
+          end
+        end,
+        desc = 'Previous Trouble/Quickfix Item',
+      },
+      {
+        ']q',
+        function()
+          if require('trouble').is_open() then
+            require('trouble').next { skip_groups = true, jump = true }
+          else
+            vim.cmd.cnext()
+          end
+        end,
+        desc = 'Next Trouble/Quickfix Item',
+      },
+    },
+  },
+  {
+    'folke/persistence.nvim',
+    enabled = false,
+    event = 'VimEnter',
+    opts = {
+      options = vim.opt_global.sessionoptions:get(),
+      -- Enable to autoload session on startup, unless:
+      -- * neovim was started with files as arguments
+      -- * stdin has been provided
+      -- * git commit/rebase session
+      autoload = true,
+    },
+    keys = {
+      {
+        '<leader>qs',
+        function()
+          require('persistence').load()
+        end,
+        desc = 'Restore Session',
+      },
+      {
+        '<leader>ql',
+        function()
+          require('persistence').load { last = true }
+        end,
+        desc = 'Restore Last Session',
+      },
+      {
+        '<leader>qd',
+        function()
+          require('persistence').stop()
+        end,
+        desc = "Don't Save Current Session",
+      },
     },
   },
 }

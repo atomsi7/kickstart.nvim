@@ -108,20 +108,6 @@ return {
     },
   },
   {
-    'ahmedkhalf/project.nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('project_nvim').setup {
-        manual_mode = true,
-      }
-      -- Directly load the telescope extension without LazyVim
-      require('telescope').load_extension 'projects'
-    end,
-    keys = {
-      { '<leader>sp', '<Cmd>Telescope projects<CR>', desc = '[S]earch [P]rojects' },
-    },
-  },
-  {
     'stevearc/overseer.nvim',
     lazy = true,
     opts = {},
