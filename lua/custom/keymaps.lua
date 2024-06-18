@@ -1,6 +1,5 @@
 local functions = require 'custom.functions'
 local map = vim.keymap.set
-local wk = require 'which-key'
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 map('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
@@ -23,7 +22,3 @@ map({ 'n', 'v' }, '<C-v>', '"+p')
 
 map({ 'n', 'v' }, 'gA', 'ggVG', { desc = 'Select All' })
 map({ 'n', 'i', 'v' }, '<C-z>', 'u')
-wk.register {
-  ['<C-i>'] = 'jump Next',
-  ['<C-o>'] = 'jump Previous',
-}

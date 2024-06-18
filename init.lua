@@ -211,6 +211,10 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+-- [[ Self Wrtie Configure load]]
+require 'custom.options'
+require 'custom.keymaps'
+require 'custom.autocmds'
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -965,10 +969,5 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
--- call cmd SetProxy
-
-require 'custom.options'
-require 'custom.keymaps'
-require 'custom.autocmds'
 
 vim.cmd 'SetProxy'
