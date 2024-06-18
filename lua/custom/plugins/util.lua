@@ -12,7 +12,7 @@ return {
     },
     keys = {
       {
-        '<leader>a',
+        '<LocalLeader>a',
         function()
           require('harpoon'):list():add()
         end,
@@ -33,7 +33,7 @@ return {
         desc = 'Previous Location',
       },
       {
-        '<Leader>mr',
+        '<LocalLeader>d',
         function()
           require('harpoon'):list():remove()
         end,

@@ -1,10 +1,11 @@
+local functions = require 'custom.functions'
 local map = vim.keymap.set
 local wk = require 'which-key'
 map('n', '<S-h>', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 map('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
 map('n', '[b', '<cmd>bprevious<cr>', { desc = 'Prev Buffer' })
 map('n', ']b', '<cmd>bnext<cr>', { desc = 'Next Buffer' })
-map('n', '<leader>x', '<cmd>bd<cr>', { desc = 'Close Buffer' })
+map('n', '<leader>x', functions.bufremove, { desc = 'Close Buffer' })
 
 map({ 'i', 'x', 'n', 's' }, '<C-s>', '<cmd>w<cr><esc>', { desc = 'Save File' })
 
