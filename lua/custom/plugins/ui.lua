@@ -198,7 +198,7 @@ return {
         end
       end
 
-      overseer = require 'overseer'
+      local overseer = require 'overseer'
       require('lualine').setup {
         options = {
           icons_enabled = true,
@@ -207,7 +207,7 @@ return {
           -- section_separators = { left = "", right = "" },
           section_separators = '',
           component_separators = '',
-          disabled_filetypes = { 'dapui_watches', 'dapui_breakpoints', 'dapui_scopes', 'dapui_console', 'dapui_stacks', 'dap-repl', 'OverseerList' },
+          disabled_filetypes = { 'dapui_watches', 'dapui_breakpoints', 'dapui_scopes', 'dapui_console', 'dapui_stacks', 'dap-repl', 'OverseerList', 'trouble' },
           always_divide_middle = true,
         },
         sections = {
