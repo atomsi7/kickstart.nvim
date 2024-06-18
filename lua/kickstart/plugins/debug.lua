@@ -43,6 +43,7 @@ return {
       { '<S-F11>', dap.step_out, desc = 'Debug: Step Out' },
       { '<F9>', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
       { '<S-F5>', dap.terminate, desc = 'Debug: Terminate' },
+      { '<C-S-F5>', dap.run_last, desc = 'Debug: Run Last' },
       { '<leader>db', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
       {
         '<S-F9>',

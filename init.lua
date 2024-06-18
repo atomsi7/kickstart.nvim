@@ -133,7 +133,7 @@ vim.opt.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
@@ -276,7 +276,20 @@ require('lazy').setup({
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
+      require('which-key').setup {
+        triggers_nowait = {
+          -- marks
+          -- '`',
+          -- "'",
+          'g`',
+          "g'",
+          -- registers
+          -- '"',
+          '<c-r>',
+          -- spelling
+          'z=',
+        },
+      }
 
       -- Document existing key chains
       require('which-key').register {
