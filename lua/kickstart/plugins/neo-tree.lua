@@ -1,4 +1,4 @@
--- Neo-tree is a Neovim plugin to browse the file system
+--Neo Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 return {
   'nvim-neo-tree/neo-tree.nvim',
@@ -14,7 +14,16 @@ return {
   },
   opts = {
     filesystem = {
-      hijack_netrw_behavior = 'open_current',
+      follow_current_file = {
+        enabled = true,
+        leave_dirs_open = true,
+      },
+      hijack_netrw_behavior = 'open_default',
+      filtered_items = {
+        always_show = {
+          '.vscode',
+        },
+      },
     },
     window = {
       max_width = { 50, 0.3 },

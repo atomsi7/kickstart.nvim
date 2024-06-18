@@ -4,7 +4,13 @@ return {
     -- enabled = false,
     event = 'VeryLazy',
     vscode = true,
-    opts = {},
+    opts = {
+      modes = {
+        char = {
+          keys = { 'f', 'F', 't', 'T' },
+        },
+      },
+    },
     keys = {
       {
         's',
