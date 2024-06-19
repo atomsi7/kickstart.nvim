@@ -122,10 +122,6 @@ return {
         {
           elements = {
             {
-              id = 'scopes',
-              size = 0.8,
-            },
-            {
               id = 'stacks',
               size = 0.3,
             },
@@ -136,6 +132,10 @@ return {
             {
               id = 'breakpoints',
               size = 0.1,
+            },
+            {
+              id = 'scopes',
+              size = 0.8,
             },
           },
           position = 'left',
