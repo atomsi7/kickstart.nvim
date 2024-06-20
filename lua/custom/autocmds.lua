@@ -64,3 +64,8 @@ vim.api.nvim_create_user_command("ClearShada", function()
     vim.print("Successfully deleted all temporary shada files")
   end
 end, { desc = "Clears all the .tmp shada files" })
+
+function ToggleDiagnostics()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end
+vim.api.nvim_create_user_command("ToggleDiagnostic", ToggleDiagnostics, {})
