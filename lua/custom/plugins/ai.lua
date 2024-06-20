@@ -1,3 +1,4 @@
+local ai_proxy = require('custom.unsynced').ai_proxy
 return {
   {
     'CopilotC-Nvim/CopilotChat.nvim',
@@ -7,7 +8,7 @@ return {
       local user = vim.env.USER or 'User'
       user = user:sub(1, 1):upper() .. user:sub(2)
       return {
-        proxy = vim.g.default_proxy,
+        proxy = ai_proxy,
         allow_insecure = true,
         model = 'gpt-4',
         auto_insert_mode = true,
@@ -94,7 +95,7 @@ return {
       },
     },
     config = function()
-      vim.g.copilot_proxy = vim.g.default_proxy
+      vim.g.copilot_proxy = ai_proxy
       vim.g.copilot_proxy_strict_ssl = false
       require('copilot').setup {}
     end,
