@@ -1,17 +1,12 @@
 return {
   'olimorris/persisted.nvim',
-  lazy = false, -- make sure the plugin is always loaded at startup
-  config = function()
-    require('persisted').setup {
-      autoload = true,
-      on_autoload_no_session = function()
-        vim.notify 'No existing session to load.'
-      end,
-      ignored_dirs = {
-        { '~', exact = true },
-      },
-    }
-
+  event = 'VimEnter',
+  opts = function()
+    if LazyVim.has 'telescope.nvim' then
+      LazyVim.on_load('telescope.nvim', function()
+        require('telescope').load_extension 'persisted'
+      end)
+    end
     local group = vim.api.nvim_create_augroup('PersistedHooks', {})
     vim.api.nvim_create_autocmd({ 'User' }, {
       pattern = 'PersistedSavePre',
@@ -37,6 +32,15 @@ return {
         vim.notify('Loaded session in ' .. vim.fn.getcwd())
       end,
     })
+    return {
+      autoload = true,
+      on_autoload_no_session = function()
+        vim.notify 'No existing session to load.'
+      end,
+      ignored_dirs = {
+        { '~', exact = true },
+      },
+    }
   end,
   keys = {
     {
