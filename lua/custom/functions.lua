@@ -4,7 +4,7 @@ function M.bufremove(buf)
   buf = buf == 0 and vim.api.nvim_get_current_buf() or buf
 
   if vim.bo.modified then
-    local choice = vim.fn.confirm(('Save changes to %q?'):format(vim.fn.bufname()), '&Yes\n&No\n&Cancel')
+    local choice = vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
     if choice == 0 then -- Cancel
       return
     end
@@ -19,14 +19,14 @@ function M.bufremove(buf)
         return
       end
       -- Try using alternate buffer
-      local alt = vim.fn.bufnr '#'
+      local alt = vim.fn.bufnr("#")
       if alt ~= buf and vim.fn.buflisted(alt) == 1 then
         vim.api.nvim_win_set_buf(win, alt)
         return
       end
 
       -- Try using previous buffer
-      local has_previous = pcall(vim.cmd, 'bprevious')
+      local has_previous = pcall(vim.cmd, "bprevious")
       if has_previous and buf ~= vim.api.nvim_win_get_buf(win) then
         return
       end
@@ -37,7 +37,7 @@ function M.bufremove(buf)
     end)
   end
   if vim.api.nvim_buf_is_valid(buf) then
-    pcall(vim.cmd, 'bdelete! ' .. buf)
+    pcall(vim.cmd, "bdelete! " .. buf)
   end
 end
 return M

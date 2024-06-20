@@ -1,1 +1,1 @@
-_G.LazyVim = require 'lazyvim.util'
+_G.LazyVim = require("lazyvim.util")

@@ -1,12 +1,12 @@
-local unsynced = require 'custom.unsynced'
-vim.opt.shell = 'pwsh'
-vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
-vim.opt.shellquote = ''
-vim.opt.shellpipe = '| Out-File -Encoding UTF8 %s'
-vim.opt.shellredir = '| Out-File -Encoding UTF8 %s'
-vim.opt.shellxquote = ''
+local unsynced = require("custom.unsynced")
+vim.opt.shell = "pwsh"
+vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
+vim.opt.shellquote = ""
+vim.opt.shellpipe = "| Out-File -Encoding UTF8 %s"
+vim.opt.shellredir = "| Out-File -Encoding UTF8 %s"
+vim.opt.shellxquote = ""
 
-vim.g.python3_host_prog = '$CONDA_PREFIX/python.exe'
+vim.g.python3_host_prog = "$CONDA_PREFIX/python.exe"
 
 vim.g.default_proxy = unsynced.default_proxy
 vim.o.tabstop = 4 -- A TAB character looks like 4 spaces

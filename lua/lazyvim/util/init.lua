@@ -2,14 +2,14 @@ local M = {}
 
 ---@param name string
 function M.get_plugin(name)
-  return require('lazy.core.config').spec.plugins[name]
+  return require("lazy.core.config").spec.plugins[name]
 end
 
 ---@param name string
 ---@param path string?
 function M.get_plugin_path(name, path)
   local plugin = M.get_plugin(name)
-  path = path and '/' .. path or ''
+  path = path and "/" .. path or ""
   return plugin and (plugin.dir .. path)
 end
 
@@ -19,7 +19,7 @@ function M.has(plugin)
 end
 
 function M.is_loaded(name)
-  local Config = require 'lazy.core.config'
+  local Config = require("lazy.core.config")
   return Config.plugins[name] and Config.plugins[name]._.loaded
 end
 
@@ -29,8 +29,8 @@ function M.on_load(name, fn)
   if M.is_loaded(name) then
     fn(name)
   else
-    vim.api.nvim_create_autocmd('User', {
-      pattern = 'LazyLoad',
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "LazyLoad",
       callback = function(event)
         if event.data == name then
           fn(name)

@@ -3,6 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { import = 'custom.plugins.extra' },
-  { import = 'custom.plugins.project' },
+  { import = "custom.plugins.extra" },
+  { import = "custom.plugins.project" },
 }

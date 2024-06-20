@@ -1,74 +1,74 @@
-local ai_proxy = require('custom.unsynced').ai_proxy
+local ai_proxy = require("custom.unsynced").ai_proxy
 return {
   {
-    'CopilotC-Nvim/CopilotChat.nvim',
-    branch = 'canary',
-    cmd = 'CopilotChat',
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    cmd = "CopilotChat",
     opts = function()
-      local user = vim.env.USER or 'User'
+      local user = vim.env.USER or "User"
       user = user:sub(1, 1):upper() .. user:sub(2)
       return {
         proxy = ai_proxy,
         allow_insecure = true,
-        model = 'gpt-4',
+        model = "gpt-4",
         auto_insert_mode = true,
         show_help = true,
-        question_header = '  ' .. user .. ' ',
-        answer_header = '  Copilot ',
+        question_header = "  " .. user .. " ",
+        answer_header = "  Copilot ",
         window = {
           width = 0.4,
         },
         selection = function(source)
-          local select = require 'CopilotChat.select'
+          local select = require("CopilotChat.select")
           return select.visual(source) or select.buffer(source)
         end,
       }
     end,
     keys = {
-      { '<leader>a', '', desc = '[A]I', mode = { 'n', 'v' } },
+      { "<leader>a", "", desc = "[A]I", mode = { "n", "v" } },
       {
-        '<leader>aa',
+        "<leader>aa",
         function()
-          return require('CopilotChat').toggle()
+          return require("CopilotChat").toggle()
         end,
-        desc = 'Toggle (CopilotChat)',
-        mode = { 'n', 'v' },
+        desc = "Toggle (CopilotChat)",
+        mode = { "n", "v" },
       },
       {
-        '<leader>ax',
+        "<leader>ax",
         function()
-          return require('CopilotChat').reset()
+          return require("CopilotChat").reset()
         end,
-        desc = 'Clear (CopilotChat)',
-        mode = { 'n', 'v' },
+        desc = "Clear (CopilotChat)",
+        mode = { "n", "v" },
       },
       {
-        '<leader>aq',
+        "<leader>aq",
         function()
-          local input = vim.fn.input 'Quick Chat: '
-          if input ~= '' then
-            require('CopilotChat').ask(input)
+          local input = vim.fn.input("Quick Chat: ")
+          if input ~= "" then
+            require("CopilotChat").ask(input)
           end
         end,
-        desc = '[Q]uick Chat (CopilotChat)',
-        mode = { 'n', 'v' },
+        desc = "[Q]uick Chat (CopilotChat)",
+        mode = { "n", "v" },
       },
       {
-        '<leader>ap',
+        "<leader>ap",
         function()
-          local actions = require 'CopilotChat.actions'
-          require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
+          local actions = require("CopilotChat.actions")
+          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
         end,
-        desc = '[P]rompt actions (CopilotChat)',
-        mode = { 'n', 'v' },
+        desc = "[P]rompt actions (CopilotChat)",
+        mode = { "n", "v" },
       },
     },
     config = function(_, opts)
-      local chat = require 'CopilotChat'
-      require('CopilotChat.integrations.cmp').setup()
+      local chat = require("CopilotChat")
+      require("CopilotChat.integrations.cmp").setup()
 
-      vim.api.nvim_create_autocmd('BufEnter', {
-        pattern = 'copilot-chat',
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "copilot-chat",
         callback = function()
           vim.opt_local.relativenumber = false
           vim.opt_local.number = false
@@ -79,12 +79,12 @@ return {
     end,
   },
   {
-    'zbirenbaum/copilot.lua',
-    event = 'InsertEnter',
-    cmd = 'Copilot',
-    build = ':Copilot auth',
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    cmd = "Copilot",
+    build = ":Copilot auth",
     dependencies = {
-      { 'zbirenbaum/copilot-cmp' },
+      { "zbirenbaum/copilot-cmp" },
     },
     opts = {
       suggestion = { enabled = false },
@@ -97,14 +97,14 @@ return {
     config = function()
       vim.g.copilot_proxy = ai_proxy
       vim.g.copilot_proxy_strict_ssl = false
-      require('copilot').setup {}
+      require("copilot").setup({})
     end,
   },
   {
-    'zbirenbaum/copilot-cmp',
+    "zbirenbaum/copilot-cmp",
     lazy = true,
     config = function()
-      require('copilot_cmp').setup()
+      require("copilot_cmp").setup()
     end,
   },
 }
