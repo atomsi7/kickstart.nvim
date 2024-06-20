@@ -22,9 +22,34 @@ return {
         direction = 'float',
         auto_scroll = true,
       }
+      local Terminal = require('toggleterm.terminal').Terminal
+      local lazygit = Terminal:new {
+        cmd = 'lazygit',
+        dir = 'git_dir',
+        display_name = 'lazygit',
+        direction = 'float',
+        float_opts = {
+          border = 'double',
+        },
+        hidden = true,
+        -- function to run on opening the terminal
+        on_open = function(term)
+          -- vim.cmd 'startinsert!'
+          vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<M-g>', '<cmd>close<cr>', { noremap = true, silent = true })
+        end,
+        -- function to run on closing the terminal
+        on_close = function(term)
+          vim.cmd 'startinsert!'
+        end,
+      }
+
+      function _lazygit_toggle()
+        lazygit:toggle()
+      end
     end,
     keys = {
       { '<M-i>', '<cmd>ToggleTerm<CR>', desc = 'ToggleTerm float' },
+      { '<M-g>', '<cmd>lua _lazygit_toggle()<CR>', desc = 'toggle lazygit term' },
     },
   },
   {
