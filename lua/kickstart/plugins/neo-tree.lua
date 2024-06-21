@@ -2,11 +2,31 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  lazy = true,
   version = "*",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     "MunifTanjim/nui.nvim",
+    {
+      "s1n7ax/nvim-window-picker",
+      version = "2.*",
+      config = function()
+        require("window-picker").setup({
+          filter_rules = {
+            include_current_win = false,
+            autoselect_one = true,
+            -- filter using buffer options
+            bo = {
+              -- if the file type is one of following, the window will be ignored
+              filetype = { "neo-tree", "neo-tree-popup", "notify" },
+              -- if the buffer type is one of following, the window will be ignored
+              buftype = { "terminal", "quickfix" },
+            },
+          },
+        })
+      end,
+    },
   },
   cmd = "Neotree",
   keys = {
@@ -60,23 +80,23 @@ return {
       },
     },
   },
-  init = function()
-    -- FIX: use `autocmd` for lazy-loading neo-tree instead of directly requiring it,
-    -- because `cwd` is not set up properly.
-    vim.api.nvim_create_autocmd("BufEnter", {
-      group = vim.api.nvim_create_augroup("Neotree_start_directory", { clear = true }),
-      desc = "Start Neo-tree with directory",
-      once = true,
-      callback = function()
-        if package.loaded["neo-tree"] then
-          return
-        else
-          local stats = vim.uv.fs_stat(vim.fn.argv(0))
-          if stats and stats.type == "directory" then
-            require("neo-tree")
-          end
-        end
-      end,
-    })
-  end,
+  -- init = function()
+  --   -- FIX: use `autocmd` for lazy-loading neo-tree instead of directly requiring it,
+  --   -- because `cwd` is not set up properly.
+  --   vim.api.nvim_create_autocmd("BufEnter", {
+  --     group = vim.api.nvim_create_augroup("Neotree_start_directory", { clear = true }),
+  --     desc = "Start Neo-tree with directory",
+  --     once = true,
+  --     callback = function()
+  --       if package.loaded["neo-tree"] then
+  --         return
+  --       else
+  --         local stats = vim.uv.fs_stat(vim.fn.argv(0))
+  --         if stats and stats.type == "directory" then
+  --           require("neo-tree")
+  --         end
+  --       end
+  --     end,
+  --   })
+  -- end,
 }

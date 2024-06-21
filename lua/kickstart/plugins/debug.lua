@@ -12,7 +12,7 @@ return {
   cmd = {
     "DapLoadLaunchJSON",
   },
-  event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+  lazy = true,
   -- NOTE: And you can specify dependencies as well
   dependencies = {
     -- Creates a beautiful debugger UI
