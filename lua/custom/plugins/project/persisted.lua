@@ -1,6 +1,7 @@
 return {
   "olimorris/persisted.nvim",
-  event = "VimEnter",
+  lazy = false,
+  priority = 500,
   opts = function()
     if LazyVim.has("telescope.nvim") then
       LazyVim.on_load("telescope.nvim", function()

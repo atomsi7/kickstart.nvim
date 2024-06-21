@@ -2,7 +2,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
-    event = "VeryLazy",
+    event = "UIEnter",
     dependencies = "nvim-tree/nvim-web-devicons",
     opts = {
       options = {
@@ -29,7 +29,7 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     init = function()
       vim.g.lualine_laststatus = vim.o.laststatus
@@ -347,7 +347,7 @@ return {
   },
   {
     "rcarriga/nvim-notify",
-    lazy = false,
+    event = "VeryLazy",
     --stylua: ignore
     keys = {
       { "<leader>tn", function() require("notify").dismiss({ silent = true, pending = true }) end, desc = "Dismiss All [N]otifications" },
