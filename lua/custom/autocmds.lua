@@ -25,17 +25,17 @@ vim.api.nvim_create_user_command("UnsetProxy", unset_proxy, {})
 vim.api.nvim_create_augroup("TerminalCommands", { clear = true })
 
 local function activate_conda_env()
-  local venv = os.getenv("CONDA_DEFAULT_ENV")
-  local cmd = ""
-  if venv ~= "base" then
-    cmd = "conda activate " .. venv
-  end
-  -- Get the terminal job ID
-  local term_job_id = vim.b.terminal_job_id
-  -- Send the conda activate command to the terminal
-  if term_job_id then
-    vim.fn.chansend(term_job_id, cmd)
-  end
+  -- local venv = os.getenv("CONDA_DEFAULT_ENV")
+  -- local cmd = ""
+  -- if venv ~= "base" then
+  --   cmd = "conda activate " .. venv
+  -- end
+  -- -- Get the terminal job ID
+  -- local term_job_id = vim.b.terminal_job_id
+  -- -- Send the conda activate command to the terminal
+  -- if term_job_id then
+  --   vim.fn.chansend(term_job_id, cmd)
+  -- end
 end
 vim.api.nvim_create_autocmd("TermOpen", {
   group = "TerminalCommands",
