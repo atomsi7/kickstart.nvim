@@ -15,6 +15,11 @@ return {
       callback = function()
         -- Ensure the minimap plugin is not written into the session
         vim.cmd("Neotree close")
+        -- Safely require and close dapui
+        local ok, dapui = pcall(require, "dapui")
+        if ok then
+          dapui.close()
+        end
       end,
     })
     vim.api.nvim_create_autocmd({ "User" }, {
@@ -35,6 +40,7 @@ return {
     })
     return {
       autoload = true,
+      -- autosave = false,
       on_autoload_no_session = function()
         vim.notify("No existing session to load.")
       end,
