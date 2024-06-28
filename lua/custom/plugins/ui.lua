@@ -227,7 +227,7 @@ return {
             { virtual_env, color = { fg = "black", bg = "#F1CA81" } },
           },
           lualine_c = {
-            "filename",
+            { "filename", path = 1 },
             { ime_state, color = { fg = "black", bg = "#f46868" } },
             { spell, color = { fg = "black", bg = "#a7c080" } },
             { "diagnostics", sources = { "nvim_diagnostic" }, symbols = { error = " ", warn = " ", info = " ", hint = " " } },
