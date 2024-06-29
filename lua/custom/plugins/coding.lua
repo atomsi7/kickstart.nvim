@@ -17,9 +17,9 @@ return {
             return 20
           end
         end,
-        open_mapping = [[<M-i>]],
+        open_mapping = [[<c-\>]],
         shell = vim.o.shell,
-        direction = "float",
+        direction = "tab",
         auto_scroll = true,
       })
       local Terminal = require("toggleterm.terminal").Terminal
@@ -38,18 +38,66 @@ return {
           vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<M-g>", "<cmd>close<cr>", { noremap = true, silent = true })
         end,
         -- function to run on closing the terminal
-        on_close = function(term)
+        on_close = function()
           vim.cmd("startinsert!")
         end,
       })
-
-      function _lazygit_toggle()
+      function _Lazygit_toggle()
         lazygit:toggle()
+      end
+
+      -- Initialize variables to store terminals
+      local terminals = {
+        horizontal = { instance = nil, keymap = "<M-h>", },
+        vertical = { instance = nil, keymap = "<M-v>", },
+        float = { instance = nil, keymap = "<M-i>" },
+        tab = { instance = nil, keymap = "<M-t>" }
+      }
+
+      -- Function to create and toggle a new terminal based on direction
+      function _Toggle_default_term(direction)
+        local function create_new_term(_direction)
+          return Terminal:new({
+            display_name = _direction,
+            direction = _direction,
+            hidden = true,
+            on_open = function(term)
+              vim.api.nvim_buf_set_keymap(term.bufnr, "t", terminals[_direction].keymap, "<cmd>close<cr>",
+                { noremap = true, silent = true })
+            end,
+          })
+        end
+        local term = terminals[direction].instance
+
+        if term then
+          -- If the terminal exists, toggle it
+          term:toggle()
+        else
+          -- If the terminal doesn't exist, create it
+          term = create_new_term(direction)
+
+          -- Store the created terminal in the terminals table
+          terminals[direction].instance = term
+
+          -- Toggle the newly created terminal
+          term:toggle()
+        end
+      end
+
+      function _Create_new_term(direction)
+        Terminal:new({ direction = direction, hidden = false }):toggle()
       end
     end,
     keys = {
-      { "<M-i>", "<cmd>ToggleTerm<CR>", desc = "ToggleTerm float" },
-      { "<M-g>", "<cmd>lua _lazygit_toggle()<CR>", desc = "toggle lazygit term" },
+      { "<M-i>",       "<cmd>lua _Toggle_default_term('float')<CR>",      desc = "ToggleTerm float" },
+      { "<M-g>",       "<cmd>lua _Lazygit_toggle()<CR>",                  desc = "toggle lazygit term" },
+      { "<leader>ttv", "<cmd>lua _Create_new_term('vertical')<CR>",       desc = "Create vertical term" },
+      { "<leader>tth", "<cmd>lua _Create_new_term('horizontal')<CR>",     desc = "Create horizontal term" },
+      { "<M-v>",       "<cmd>lua _Toggle_default_term('vertical')<CR>",   desc = "Toggle vertical term" },
+      { "<M-h>",       "<cmd>lua _Toggle_default_term('horizontal')<CR>", desc = "Toggle horizontal term" },
+      { "<M-t>",       "<cmd>lua _Toggle_default_term('tab')<CR>",        desc = "Toggle tab term" },
+      { "<C-S-\\>",    "<cmd>ToggleTermToggleAll<CR>",                    desc = "Toggle All term" },
+      { "<C-\\>",      "which_key_ignore" }
     },
   },
   {
@@ -69,7 +117,8 @@ return {
           options = {},
           search = {
             anaconda_envs = {
-              command = "$FD python.exe$ $CONDA_PREFIX/envs --max-depth 2 --type f --full-path --color never -E /proc -I -a -L",
+              command =
+              "$FD python.exe$ $CONDA_PREFIX/envs --max-depth 2 --type f --full-path --color never -E /proc -I -a -L",
               type = "anaconda",
             },
             anaconda_base = {
@@ -93,16 +142,16 @@ return {
     opts = {}, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
     keys = {
-      { "<leader>dx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
+      { "<leader>dx", "<cmd>Trouble diagnostics toggle<cr>",              desc = "Diagnostics (Trouble)" },
       { "<leader>dX", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
-      { "<leader>ds", "<cmd>Trouble symbols toggle focus=false<cr>", desc = "Symbols (Trouble)" },
+      { "<leader>ds", "<cmd>Trouble symbols toggle focus=false<cr>",      desc = "Symbols (Trouble)" },
       {
         "<leader>dl",
         "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
         desc = "LSP Definitions / references / ... (Trouble)",
       },
       { "<leader>dL", "<cmd>Trouble loclist toggle<cr>", desc = "Location List (Trouble)" },
-      { "<leader>dq", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix List (Trouble)" },
+      { "<leader>dq", "<cmd>Trouble qflist toggle<cr>",  desc = "Quickfix List (Trouble)" },
       {
         "gR",
         function()
@@ -148,9 +197,9 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
+      { "<leader>qs", function() require("persistence").load() end,                desc = "Restore Session" },
       { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session" },
-      { "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Current Session" },
+      { "<leader>qd", function() require("persistence").stop() end,                desc = "Don't Save Current Session" },
     },
   },
 }

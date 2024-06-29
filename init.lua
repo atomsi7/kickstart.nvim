@@ -177,7 +177,8 @@ vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagn
 --
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+vim.keymap.set("t", "<M-n>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -591,9 +592,7 @@ require("lazy").setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       --TODO:SET LSP CONFIG HERE
       local servers = {
-        clangd = {
-          cmd = { "clangd", "--compile-commands-dir=" .. vim.fn.getcwd() .. "/.vscode" },
-        },
+        clangd = {},
         -- gopls = {},
         pyright = {
           -- on_new_config = function(cfg, root)
@@ -693,10 +692,10 @@ require("lazy").setup({
         -- lua = { {"stylua", "lua-format"} },
         -- Conform can also run multiple formatters sequentially
         python = { "isort", "black" },
-        --
+        json = { "prettier" },
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        javascript = { { "prettierd", "prettier" } },
+        ["_"] = { "prettier" }
       },
     },
   },
