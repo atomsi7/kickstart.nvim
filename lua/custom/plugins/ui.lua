@@ -61,14 +61,14 @@ return {
       if vim.g.trouble_lualine then
         local trouble = require("trouble")
         local symbols = trouble.statusline
-          and trouble.statusline({
-            mode = "symbols",
-            groups = {},
-            title = false,
-            filter = { range = true },
-            format = "{kind_icon}{symbol.name:Normal}",
-            hl_group = "lualine_c_normal",
-          })
+            and trouble.statusline({
+              mode = "symbols",
+              groups = {},
+              title = false,
+              filter = { range = true },
+              format = "{kind_icon}{symbol.name:Normal}",
+              hl_group = "lualine_c_normal",
+            })
         table.insert(opts.sections.lualine_c, {
           symbols and symbols.get,
           cond = symbols and symbols.has,
@@ -223,7 +223,7 @@ return {
           lualine_a = { "mode" },
           lualine_b = {
             "branch",
-            { "diff", source = diff },
+            { "diff",      source = diff },
             { virtual_env, color = { fg = "black", bg = "#F1CA81" } },
           },
           lualine_c = {
@@ -242,7 +242,7 @@ return {
           },
           lualine_z = {
             { trailing_space, color = "WarningMsg" },
-            { mixed_indent, color = "WarningMsg" },
+            { mixed_indent,   color = "WarningMsg" },
           },
         },
         inactive_sections = {
@@ -300,15 +300,15 @@ return {
     },
     --stylua: ignore
     keys = {
-      { "<leader>s<S-n>", "", desc = "[N]oice" },
-      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<leader>s<S-n>l", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>s<S-n>h", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>s<S-n>a", function() require("noice").cmd("all") end, desc = "Noice All" },
-      { "<leader>s<S-n>d", function() require("noice").cmd("dismiss") end, desc = "[D]ismiss All" },
-      { "<leader>s<S-n>t", function() require("noice").cmd("pick") end, desc = "Noice Picker (Telescope/FzfLua)" },
-      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll Forward", mode = { "i", "n", "s" } },
-      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll Backward", mode = { "i", "n", "s" } },
+      { "<leader>s<S-n>",  "",                                                                            desc = "[N]oice" },
+      { "<S-Enter>",       function() require("noice").redirect(vim.fn.getcmdline()) end,                 mode = "c",                              desc = "Redirect Cmdline" },
+      { "<leader>s<S-n>l", function() require("noice").cmd("last") end,                                   desc = "Noice Last Message" },
+      { "<leader>s<S-n>h", function() require("noice").cmd("history") end,                                desc = "Noice History" },
+      { "<leader>s<S-n>a", function() require("noice").cmd("all") end,                                    desc = "Noice All" },
+      { "<leader>s<S-n>d", function() require("noice").cmd("dismiss") end,                                desc = "[D]ismiss All" },
+      { "<leader>s<S-n>t", function() require("noice").cmd("pick") end,                                   desc = "Noice Picker (Telescope/FzfLua)" },
+      { "<c-f>",           function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end,  silent = true,                           expr = true,              desc = "Scroll Forward",  mode = { "i", "n", "s" } },
+      { "<c-b>",           function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,                           expr = true,              desc = "Scroll Backward", mode = { "i", "n", "s" } },
     },
     config = function()
       require("noice").setup({
@@ -351,7 +351,7 @@ return {
     --stylua: ignore
     keys = {
       { "<leader>tn", function() require("notify").dismiss({ silent = true, pending = true }) end, desc = "Dismiss All [N]otifications" },
-      { "<leader>sn", "<cmd>Telescope notify<cr>", desc = "[N]otify Telescope" },
+      { "<leader>sn", "<cmd>Telescope notify<cr>",                                                 desc = "[N]otify Telescope" },
     },
     opts = {
       stages = "static",
@@ -369,6 +369,16 @@ return {
     init = function()
       vim.notify = require("notify")
       require("telescope").load_extension("notify")
+    end,
+  },
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = "VeryLazy",
+    config = function()
+      -- patch https://github.com/nvim-treesitter/nvim-treesitter/issues/1124
+      if vim.fn.expand('%:p') ~= "" then
+        vim.cmd.edit({ bang = true })
+      end
     end,
   },
 }

@@ -37,19 +37,19 @@ return {
     local dapui = require("dapui")
     --stylua: ignore
     return {
-      { "<F5>", dap.continue, desc = "Debug: Start/Continue" },
-      { "<C-F5>", dap.run_to_cursor, desc = "Debug: Run to Cursor" },
-      { "<F11>", dap.step_into, desc = "Debug: Step Into" },
-      { "<F10>", dap.step_over, desc = "Debug: Step Over" },
-      { "<S-F11>", dap.step_out, desc = "Debug: Step Out" },
-      { "<F9>", dap.toggle_breakpoint, desc = "Debug: Toggle Breakpoint" },
-      { "<S-F5>", dap.terminate, desc = "Debug: Terminate" },
-      { "<C-S-F5>", dap.run_last, desc = "Debug: Run Last" },
-      { "<leader>db", dap.toggle_breakpoint, desc = "Debug: Toggle Breakpoint" },
-      { "<S-F9>", function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = "Debug:Set Condition Breakpoint" },
-      { "<leader>du", function() dapui.toggle({}) end, desc = "Dap UI" },
-      { mode = { "n", "v" }, "<F3>", dapui.eval, desc = "Eval" },
-      { "<F7>", dapui.toggle, desc = "Debug: See last session result." },
+      { "<F5>",              dap.continue,                                                              desc = "Debug: Start/Continue" },
+      { "<C-F5>",            dap.run_to_cursor,                                                         desc = "Debug: Run to Cursor" },
+      { "<F11>",             dap.step_into,                                                             desc = "Debug: Step Into" },
+      { "<F10>",             dap.step_over,                                                             desc = "Debug: Step Over" },
+      { "<S-F11>",           dap.step_out,                                                              desc = "Debug: Step Out" },
+      { "<F9>",              dap.toggle_breakpoint,                                                     desc = "Debug: Toggle Breakpoint" },
+      { "<S-F5>",            dap.terminate,                                                             desc = "Debug: Terminate" },
+      { "<C-S-F5>",          dap.run_last,                                                              desc = "Debug: Run Last" },
+      { "<leader>db",        dap.toggle_breakpoint,                                                     desc = "Debug: Toggle Breakpoint" },
+      { "<S-F9>",            function() dap.set_breakpoint(vim.fn.input("Breakpoint condition: ")) end, desc = "Debug:Set Condition Breakpoint" },
+      { "<leader>du",        function() dapui.toggle({}) end,                                           desc = "Dap UI" },
+      { mode = { "n", "v" }, "<F3>",                                                                    dapui.eval,                              desc = "Eval" },
+      { "<F7>",              dapui.toggle,                                                              desc = "Debug: See last session result." },
       unpack(keys),
     }
   end,
@@ -117,13 +117,14 @@ return {
               id = "stacks",
               size = 0.3,
             },
-            {
-              id = "watches",
-              size = 0.05,
-            },
+
             {
               id = "breakpoints",
               size = 0.1,
+            },
+            {
+              id = "watches",
+              size = 0.05,
             },
             {
               id = "scopes",
