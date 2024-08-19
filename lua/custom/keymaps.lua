@@ -22,3 +22,5 @@ map({ "n", "v" }, "<C-v>", '"+p')
 
 map({ "n", "v" }, "gA", "ggVG", { desc = "Select All" })
 map({ "n", "i", "v" }, "<C-z>", "u")
+
+map("n", "<leader>ti", "<cmd>InspectTree<cr>", { desc = "InspectTree" })

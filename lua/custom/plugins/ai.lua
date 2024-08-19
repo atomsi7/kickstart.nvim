@@ -22,17 +22,40 @@ return {
           local select = require("CopilotChat.select")
           return select.visual(source) or select.buffer(source)
         end,
+        mappings = {
+          close = {
+            normal = 'q',
+            insert = '<C-q>'
+          },
+          reset = {
+            normal = '<C-n>',
+            insert = '<C-n>'
+          }
+        }
       }
     end,
     -- stylua: ignore
     keys = {
-      { "<leader>a", "", desc = "[A]I", mode = { "n", "v" } },
-      { "<leader>aa", function() return require("CopilotChat").toggle() end, desc = "Toggle (CopilotChat)", mode = { "n", "v" }},
-      { "<leader>ax", function() return require("CopilotChat").reset() end, desc = "Clear (CopilotChat)", mode = { "n", "v" }},
-      { "<leader>aq", function() local input = vim.fn.input("Quick Chat: ") if input ~= "" then require("CopilotChat").ask(input) end end,
-        desc = "[Q]uick Chat (CopilotChat)", mode = { "n", "v" }},
-      { "<leader>ap", function() local actions = require("CopilotChat.actions") require("CopilotChat.integrations.telescope").pick(actions.prompt_actions()) end,
-        desc = "[P]rompt actions (CopilotChat)", mode = { "n", "v" },
+      { "<leader>a",  "",                                                    desc = "[A]I",                 mode = { "n", "v" } },
+      { "<leader>aa", function() return require("CopilotChat").toggle() end, desc = "Toggle (CopilotChat)", mode = { "n", "v" } },
+      { "<leader>ax", function() return require("CopilotChat").reset() end,  desc = "Clear (CopilotChat)",  mode = { "n", "v" } },
+      {
+        "<leader>aq",
+        function()
+          local input = vim.fn.input("Quick Chat: ")
+          if input ~= "" then require("CopilotChat").ask(input) end
+        end,
+        desc = "[Q]uick Chat (CopilotChat)",
+        mode = { "n", "v" }
+      },
+      {
+        "<leader>ap",
+        function()
+          local actions = require("CopilotChat.actions")
+          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+        end,
+        desc = "[P]rompt actions (CopilotChat)",
+        mode = { "n", "v" },
       },
     },
     config = function(_, opts)

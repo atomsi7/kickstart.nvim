@@ -45,10 +45,21 @@ return {
         },
       },
     },
+    default_component_configs = {
+      file_size = {
+        enabled = false,
+      },
+      type = {
+        enabled = false,
+      },
+      last_modified = {
+        enabled = false,
+      },
+    },
     window = {
       max_width = { 50, 0.3 },
       width = 28,
-      auto_expand_width = true,
+      -- auto_expand_width = true,
       mappings = {
         ["<space>"] = "none",
         ["Y"] = {
