@@ -61,14 +61,14 @@ return {
       if vim.g.trouble_lualine then
         local trouble = require("trouble")
         local symbols = trouble.statusline
-            and trouble.statusline({
-              mode = "symbols",
-              groups = {},
-              title = false,
-              filter = { range = true },
-              format = "{kind_icon}{symbol.name:Normal}",
-              hl_group = "lualine_c_normal",
-            })
+          and trouble.statusline({
+            mode = "symbols",
+            groups = {},
+            title = false,
+            filter = { range = true },
+            format = "{kind_icon}{symbol.name:Normal}",
+            hl_group = "lualine_c_normal",
+          })
         table.insert(opts.sections.lualine_c, {
           symbols and symbols.get,
           cond = symbols and symbols.has,
@@ -369,16 +369,6 @@ return {
     init = function()
       vim.notify = require("notify")
       require("telescope").load_extension("notify")
-    end,
-  },
-  {
-    "HiPhish/rainbow-delimiters.nvim",
-    event = "VeryLazy",
-    config = function()
-      -- patch https://github.com/nvim-treesitter/nvim-treesitter/issues/1124
-      if vim.fn.expand('%:p') ~= "" then
-        vim.cmd.edit({ bang = true })
-      end
     end,
   },
 }
