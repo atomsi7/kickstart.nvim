@@ -382,9 +382,9 @@ require("lazy").setup({
           },
           mappings = {
             n = {
-              ['d'] = require('telescope.actions').delete_buffer
-            } -- n
-          }
+              ["d"] = require("telescope.actions").delete_buffer,
+            }, -- n
+          },
         },
         extensions = {
           ["ui-select"] = {
@@ -631,6 +631,9 @@ require("lazy").setup({
             },
           },
         },
+        biome = {
+          root_dir = require("lspconfig").util.root_pattern("biome.json"),
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -700,7 +703,7 @@ require("lazy").setup({
         json = { "prettier" },
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        ["_"] = { "prettier" }
+        ["_"] = { "prettier" },
       },
     },
   },
@@ -819,8 +822,8 @@ require("lazy").setup({
             format = function(entry, vim_item)
               vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
               return vim_item
-            end
-          }
+            end,
+          },
         },
       })
     end,
@@ -856,7 +859,7 @@ require("lazy").setup({
   },
   {
     "rebelot/kanagawa.nvim",
-    enabled = false
+    enabled = false,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -912,6 +915,7 @@ require("lazy").setup({
         "bash",
         "c",
         "cpp",
+        "css",
         "diff",
         "html",
         "lua",
