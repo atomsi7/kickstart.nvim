@@ -607,7 +607,7 @@ require("lazy").setup({
             return vim.fn.getcwd()
           end,
         },
-        -- rust_analyzer = {},
+        rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -631,8 +631,8 @@ require("lazy").setup({
             },
           },
         },
-        biome = {
-          root_dir = require("lspconfig").util.root_pattern("biome.json"),
+        denols = {
+          root_dir = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc", "tsconfig.json", ".git"),
         },
       }
 
