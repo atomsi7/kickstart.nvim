@@ -1,12 +1,13 @@
 local unsynced = require("custom.unsynced")
---vim.opt.shell = "pwsh"
---vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
---vim.opt.shellquote = ""
---vim.opt.shellpipe = "| Out-File -Encoding UTF8 %s"
---vim.opt.shellredir = "| Out-File -Encoding UTF8 %s"
---vim.opt.shellxquote = ""
-
---vim.g.python3_host_prog = "$CONDA_PREFIX/python.exe"
+-- Check if the platform is Windows
+if vim.loop.os_uname().sysname == "Windows_NT" then
+  vim.opt.shell = "pwsh"
+  vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "
+  vim.opt.shellquote = ""
+  vim.opt.shellpipe = "| Out-File -Encoding UTF8 %s"
+  vim.opt.shellredir = "| Out-File -Encoding UTF8 %s"
+  vim.opt.shellxquote = ""
+end
 
 vim.g.default_proxy = unsynced.default_proxy
 vim.o.tabstop = 4      -- A TAB character looks like 4 spaces
@@ -16,3 +17,9 @@ vim.o.shiftwidth = 4   -- Number of spaces inserted when indenting
 
 vim.o.pumwidth = 15
 vim.o.conceallevel = 2
+
+-- Set the command-line height to 2 lines (default is 1)
+vim.o.cmdheight = 2
+
+-- Set the height of the command-line window when opened with q:
+vim.o.cmdwinheight = 10
